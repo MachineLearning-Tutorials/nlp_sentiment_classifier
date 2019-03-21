@@ -1,6 +1,6 @@
 var el = x => document.getElementById(x);
 
-function showPicker(inputId) { el('file-input').click(); }
+// function showPicker(inputId) { el('file-input').click(); }
 
 function showPicked(input) {
     el('upload-label').innerHTML = input.files[0].name;
@@ -14,7 +14,7 @@ function showPicked(input) {
 
 function analyze() {
     var uploadFiles = el('file-input').files;
-    if (uploadFiles.length != 1) alert('Please select 1 file to analyze!');
+    // if (uploadFiles.length != 1) alert('Please select 1 file to analyze!');
 
     el('analyze-button').innerHTML = 'Analyzing...';
     var xhr = new XMLHttpRequest();

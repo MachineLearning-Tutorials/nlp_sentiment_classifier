@@ -5,3 +5,9 @@ This repo can be used as a starting point to deploy [fast.ai](https://github.com
 The sample app described here is up at https://fastai-v3.onrender.com. Test it out with bear images!
 
 The guide for production deployment to Render is at https://course.fast.ai/deployment_render.html.
+
+
+Release Schedule
+Friday Mar 22 - deploy AWS Lambda
+Sunday Mar 24 - deploy Render
+Monday Mar 25 - Finish frontend

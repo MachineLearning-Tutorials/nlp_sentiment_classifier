@@ -32,7 +32,8 @@ function analyze() {
     }
 
     var fileData = new FormData();
-    fileData.append('file', uploadFiles[0]);
+    fileData.append('file', uploadFiles);
+    console.log(fileData);
     xhr.send(fileData);
 }
 

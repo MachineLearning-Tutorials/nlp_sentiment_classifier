@@ -3,17 +3,19 @@ var el = x => document.getElementById(x);
 // function showPicker(inputId) { el('file-input').click(); }
 
 function showPicked(input) {
-    el('upload-label').innerHTML = input.files[0].name;
+    // el('upload-label').innerHTML = input.files[0].name;
+    el('upload-label').innerHTML = input.name;
     var reader = new FileReader();
     reader.onload = function (e) {
         el('image-picked').src = e.target.result;
         el('image-picked').className = '';
     }
-    reader.readAsDataURL(input.files[0]);
+    // reader.readAsDataURL(input.files[0]);
+    reader.readAsText(input);
 }
 
 function analyze() {
-    var uploadFiles = el('file-input');
+    var uploadFiles = el('choose-file-button');
     // var uploadFiles = el('file-input').files;
 
     // if (uploadFiles.length != 1) alert('Please select 1 file to analyze!');
@@ -33,8 +35,8 @@ function analyze() {
 
     var fileData = new FormData();
     fileData.append('file', uploadFiles);
-    console.log(fileData);
-    console.log(uploadFiles);
+    console.log("fileData:", fileData);
+    console.log("uploadFiles:", uploadFiles);
     xhr.send(fileData);
 }
 

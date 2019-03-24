@@ -55,14 +55,13 @@ def index(request):
 async def analyze(request):
     # data = await request.form()
     data = await request.args['data']
-    app.logger.info("Classifying text %s" % (data),)
     print("data:", data)
     # img_bytes = await (data['file'].read())
-    img_bytes = await (data.read())
+    # took out img_bytes
     # img = open_image(BytesIO(img_bytes))
-    img = BytesIO(img_bytes)
-    # prediction = learn.predict(data)[0]
-    prediction = learn.predict(data)
+    img = BytesIO(data)
+    # prediction = learn.predict(img)[0]
+    prediction = learn.predict(img)
     print("prediction:", prediction)
     return JSONResponse({'result': str(prediction)})
 

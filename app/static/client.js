@@ -34,6 +34,7 @@ function analyze() {
     var fileData = new FormData();
     fileData.append('file', uploadFiles);
     console.log(fileData);
+    console.log(uploadFiles);
     xhr.send(fileData);
 }
 

@@ -50,8 +50,8 @@ def index(request):
     html = path/'view'/'index.html'
     return HTMLResponse(html.open().read())
 
-@app.route('/analyze', methods=['GET'])
-# @app.route('/analyze', methods=['POST'])
+# @app.route('/analyze', methods=['GET'])
+@app.route('/analyze', methods=['POST'])
 async def analyze(request):
     # data = await request.form()
     data = await request.args['data']

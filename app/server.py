@@ -50,10 +50,12 @@ def index(request):
     html = path/'view'/'index.html'
     return HTMLResponse(html.open().read())
 
-@app.route('/analyze', methods=['POST'])
+@app.route('/analyze', methods=['GET'])
+# @app.route('/analyze', methods=['POST'])
 async def analyze(request):
     # data = await request.form()
-    data = await request.data()
+    data = await request.args['data']
+    app.logger.info("Classifying text %s" % (data),)
     print("data:", data)
     # img_bytes = await (data['file'].read())
     img_bytes = await (data.read())

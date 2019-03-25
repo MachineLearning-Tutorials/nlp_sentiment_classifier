@@ -53,8 +53,8 @@ def index(request):
 # @app.route('/analyze', methods=['GET'])
 @app.route('/analyze', methods=['POST'])
 async def analyze(request):
-    # data = await request.form()
-    data = await request.args['data']
+    data = await request.form()
+    #data = await request.args['data']
     print("data:", data)
     # img_bytes = await (data['file'].read())
     # took out img_bytes

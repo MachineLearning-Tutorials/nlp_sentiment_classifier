@@ -13,7 +13,7 @@ export_file_url = 'https://www.dropbox.com/s/xhnvw0axn6xjbk9/export.pkl?dl=1'
 # export_file_url = 'https://www.dropbox.com/s/6bgq8t6yextloqp/export.pkl?raw=1'
 export_file_name = 'export.pkl'
 
-classes = ['neg', 'pos']
+classes = ['negative', 'positive']
 path = Path(__file__).parent
 
 app = Starlette()
@@ -53,18 +53,20 @@ def index(request):
 # @app.route('/analyze', methods=['GET'])
 @app.route('/analyze', methods=['POST'])
 async def analyze(request):
-    data = await request.json()
+    data = await request.form()
+    # data = await request.json()
     #data = await request.args['data']
     print("data:", data)
     # img_bytes = await (data['file'].read())
     # took out img_bytes
     # img = open_image(BytesIO(img_bytes))
-    img = StringIO(data["textField"])
+    img = data["reviewText"]
     print("img:", img)
     # prediction = learn.predict(img)[0]
+    # add [0] to get pos/neg
     prediction = learn.predict(img)
     print("prediction:", prediction)
-    return JSONResponse({'result': str(prediction)})
+    return JSONResponse({'result': prediction})
 
 if __name__ == '__main__':
     if 'serve' in sys.argv: uvicorn.run(app=app, host='0.0.0.0', port=5042)

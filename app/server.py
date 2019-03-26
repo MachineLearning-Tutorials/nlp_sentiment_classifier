@@ -12,8 +12,8 @@ from fastai.text import *
 export_file_url = 'https://www.dropbox.com/s/xhnvw0axn6xjbk9/export.pkl?dl=1'
 # export_file_url = 'https://www.dropbox.com/s/6bgq8t6yextloqp/export.pkl?raw=1'
 export_file_name = 'export.pkl'
-
-classes = ['negative', 'positive']
+# added comment
+classes = ['neg', 'pos']
 path = Path(__file__).parent
 
 app = Starlette()
@@ -53,20 +53,19 @@ def index(request):
 # @app.route('/analyze', methods=['GET'])
 @app.route('/analyze', methods=['POST'])
 async def analyze(request):
-    data = await request.form()
-    # data = await request.json()
+    data = await request.json()
     #data = await request.args['data']
     print("data:", data)
     # img_bytes = await (data['file'].read())
     # took out img_bytes
     # img = open_image(BytesIO(img_bytes))
-    img = data["reviewText"]
+    img = data["textField"]
+    print("data['textField']", data["textField"])
     print("img:", img)
     # prediction = learn.predict(img)[0]
-    # add [0] to get pos/neg
     prediction = learn.predict(img)
     print("prediction:", prediction)
-    return JSONResponse({'result': prediction})
+    return JSONResponse({'result': str(prediction)})
 
 if __name__ == '__main__':
     if 'serve' in sys.argv: uvicorn.run(app=app, host='0.0.0.0', port=5042)

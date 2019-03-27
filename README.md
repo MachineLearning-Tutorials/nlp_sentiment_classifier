@@ -1,10 +1,17 @@
-# Starter for deploying [fast.ai](https://www.fast.ai) models on [Render](https://render.com)
+# More to be added...
 
-This repo can be used as a starting point to deploy [fast.ai](https://github.com/fastai/fastai) models on Render.
+Created as part of Make School's intensive. Features a fully deployed NLP model that I trained.
 
-The sample app described here is up at https://fastai-v3.onrender.com. Test it out with bear images!
+Live:
+https://sentiment-classifier-restart2.onrender.com/
 
-The guide for production deployment to Render is at https://course.fast.ai/deployment_render.html.
+Github:
+https://github.com/RaymondDashWu/nlp_sentiment_classifier
+
+
+# New Features!
+  - User can enter in a form the text to be classified. This will return whether or not 
+
 
 
 Release Schedule

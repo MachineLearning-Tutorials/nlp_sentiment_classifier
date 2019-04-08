@@ -31,8 +31,9 @@ app.mount('/static', StaticFiles(directory='app/static'))
 # func setup_learner
 # if download_file worked, load up the .pkl file containing weights and activations
 ### Note: In this case weights and activations are being used for the computer to know 
-### how important a combination of words is. Ex: It was a hot _ . Words like "day" would
-### have a higher weight in that case than "It was a hot 'highly'"
+### how important a combination of words is. Ex: It was a hot _ . 
+### "It was a hot 'day'" would rank higher and thus have a higher weight 
+### than "It was a hot 'highly'"
 # if download_file did not work, return one of two errors
 # 1) if model (aforementioned learner) was trained using a CPU, return a specific error
 # 2) all other errors, return a generic error

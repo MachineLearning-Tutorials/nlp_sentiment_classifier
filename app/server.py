@@ -6,13 +6,10 @@ import uvicorn, aiohttp, asyncio
 from io import StringIO
 
 from fastai import *
-# from fastai.vision import *
 from fastai.text import *
 
 export_file_url = 'https://www.dropbox.com/s/xhnvw0axn6xjbk9/export.pkl?dl=1'
-# export_file_url = 'https://www.dropbox.com/s/6bgq8t6yextloqp/export.pkl?raw=1'
 export_file_name = 'export.pkl'
-# added comment
 classes = ['neg', 'pos']
 path = Path(__file__).parent
 
@@ -40,7 +37,11 @@ app.mount('/static', StaticFiles(directory='app/static'))
 
 
 async def download_file(url, dest):
+    # early exit if destination exists
     if dest.exists(): return
+    
+    # section for downloading the file. In this case will be used to download the weights (.pkl) 
+    # for the model
     async with aiohttp.ClientSession() as session:
         async with session.get(url) as response:
             data = await response.read()
@@ -48,6 +49,8 @@ async def download_file(url, dest):
 
 async def setup_learner():
     await download_file(export_file_url, path/export_file_name)
+
+    # used to load the learner that will be used. In this case, will call on fastai's text learner
     try:
         learn = load_learner(path, export_file_name)
         return learn
@@ -69,21 +72,11 @@ def index(request):
     html = path/'view'/'index.html'
     return HTMLResponse(html.open().read())
 
-# @app.route('/analyze', methods=['GET'])
 @app.route('/analyze', methods=['POST'])
 async def analyze(request):
     data = await request.json()
-    #data = await request.args['data']
-    print("data:", data)
-    # img_bytes = await (data['file'].read())
-    # took out img_bytes
-    # img = open_image(BytesIO(img_bytes))
     img = data["textField"]
-    print("data['textField']", data["textField"])
-    print("img:", img)
-    # prediction = learn.predict(img)[0]
     prediction = learn.predict(img)
-    print("prediction:", prediction)
     return JSONResponse({'result': str(prediction)})
 
 if __name__ == '__main__':

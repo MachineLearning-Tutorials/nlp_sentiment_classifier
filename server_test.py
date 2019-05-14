@@ -7,7 +7,10 @@ import unittest
 # import app.server
 
 # TODO tests to write:
+# - [X] 200 response on website
+# - [X] 200 response on model download
 # - [ ] response time
+#    - Ask CTO stated that it should be less than 100 ms response
 # - [ ] assert negative and errors with confidence levels above X
 # 
 
@@ -37,8 +40,6 @@ class ServerTest(unittest.TestCase):
         client = TestClient(App)
         response = client.get('https://www.dropbox.com/s/xhnvw0axn6xjbk9/export.pkl?dl=1')
         assert response.status_code == 200
-
-
 
 if __name__ == '__main__':
     unittest.main()

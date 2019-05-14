@@ -1,5 +1,5 @@
 # Refactor plan
-- [ ] Remove a lot of the debugging code/unnecessary comments
-- [ ] Annotate what function does in-line
+- [X] Remove a lot of the debugging code/unnecessary comments
+- [X] Annotate what function does in-line
 - [ ] Attempt not having to download from dropbox
-- [ ] Add tests for download_fil & setup_learner
+- [ ] Add tests for download_file & setup_learner
